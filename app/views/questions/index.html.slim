@@ -1,0 +1,32 @@
+h1 質問一覧画面
+
+= search_form_for @q, url: questions_path, class: 'mb-5' do |f|
+  .form-group.row 
+    = f.label :title_cont, '質問タイトル', class: 'col-sm-2 col-form-label'
+  .col-sm-10
+    = f.search_field :title_cont, class: 'form-control'
+  .form-group
+    = f.submit class: 'btn btn-outline-primary', value: '検索'
+
+= link_to '全て', questions_path, class: 'btn btn-primary'
+= link_to '未解決', questions_path(@question, :resolved =>0), class: 'btn btn-primary'
+= link_to '解決済み', questions_path(@question, :resolved =>1), class: 'btn btn-primary'
+<br>
+<br>
+= link_to '新規投稿', new_question_path, class: 'btn btn-primary'
+.mb-3
+  = paginate @questions
+  = page_entries_info @questions
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th 投稿者
+      th 質問タイトル
+      th 質問内容
+  tbody
+    - @questions.each do |question|
+      tr
+        td= image_tag question.user.image, size: "40x40" 
+        td= link_to question.title, question_path(question)
+        td= question.content

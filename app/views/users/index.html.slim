@@ -1,0 +1,15 @@
+h1 ユーザー一覧画面
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th アバター画像
+      th ユーザー名
+  tbody
+    - @users.each do |user|
+      tr
+        td= image_tag user.image, size: "40x40" if user.image.attached?
+        td= user.username 
+        
+

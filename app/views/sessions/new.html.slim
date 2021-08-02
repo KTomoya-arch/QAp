@@ -1,0 +1,11 @@
+h1 ログイン画面
+
+
+= form_with scope: :session, local: true do |f|
+  .form-group
+    = f.text_field :email, class: 'form-control', id: 'session_email', placeholder: 'メールアドレス'
+  br
+  .form-group
+    = f.text_field :password, class: 'form-control', id: 'session_password', placeholder: 'パスワード'
+  br
+  = f.submit nil, class: 'btn btn-primary', value: 'ログイン'
