@@ -1,0 +1,16 @@
+h1 質問編集画面
+
+.nav.justify-content-end
+
+  = form_with model: @question, local: true do |f|
+    .form-group
+      = f.label :質問タイトル
+      = f.text_field :title, class: 'form-control', id: 'question_title'
+    .form-group
+      = f.label :質問内容
+      = f.text_area :content, class: 'form-control', id: 'question_content'
+    .form-group
+      = f.label :解決済みか？
+      <br>
+      = f.select :resolved, [ ["解決済み","true"],["未解決","false"]]
+    = f.submit nil, class: 'btn btn-primary', value: '編集する'

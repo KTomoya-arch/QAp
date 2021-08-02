@@ -1,0 +1,21 @@
+h1 新規登録画面
+
+= form_with model: @user, local: true do |f|
+  .form-group
+  = f.text_field :username, class: 'form-control', id: 'user_name', placeholder: 'ユーザーネーム'
+  br
+  .form-group
+    = f.text_field :email, class: 'form-control', id: 'user_email', placeholder: 'メールアドレス'
+  br
+  .form-group
+    = f.file_field :image, class: 'form-control'
+  .form-check
+    = f.check_box :admin, class: 'form-check-input'
+    | 管理者権限
+  .form-group
+    = f.text_field :password, class: 'form-control', id: 'user_password', placeholder: 'パスワード'
+  br
+  .form-group
+    = f.text_field :password_confirmation, class: 'form-control', id: 'user_password_confirm', placeholder: 'パスワード確認'
+  br
+  = f.submit nil, class: 'btn btn-primary', value: '登録する'

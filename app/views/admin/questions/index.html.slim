@@ -1,0 +1,18 @@
+h1 質問一覧管理画面
+
+
+= link_to '新規投稿', new_question_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th 質問タイトル
+      th 質問内容
+      th
+  tbody
+    - @questions.each do |question|
+      tr
+        td= link_to question.title, question_path(question)
+        td= question.content
+        td= link_to '削除', admin_question_path(question), method: :delete ,data: { confirm: "質問を削除します。よろしいですか？"}, class: 'btn btn-danger'

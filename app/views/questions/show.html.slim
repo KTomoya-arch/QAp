@@ -1,0 +1,41 @@
+h1 質問詳細画面
+
+.nav.justify-content-end
+  = link_to '一覧', questions_path, class: 'nav-link'
+  - if @question.user_id == current_user.id
+    = link_to '編集', edit_question_path, class: 'btn btn-primary'
+    = link_to '削除', question_path, method: :delete ,data: { confirm: "質問を削除します。よろしいですか？"}, class: 'btn btn-danger'
+  - else
+  table.table.table-hover
+    tbody
+      tr
+        th ID
+        td= @question.id
+      tr
+        th タイトル
+        td= @question.title
+      tr
+        th 質問内容
+        td= @question.content
+      tr
+        th 登録日時
+        td= @question.created_at
+      tr
+        th 更新日時
+        td= @question.updated_at
+
+= form_with model: [@question, @answer], local: true do |f|
+    .form_group
+      = f.text_field :content, class: 'form-control', id: 'answer', placeholder: '回答内容'
+    = f.submit nil, class: 'btn btn-primary' , value: '回答する'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th この質問に対する回答
+  tbody
+    - @answers.each do |answer|
+      tr
+        td= answer.content
+
